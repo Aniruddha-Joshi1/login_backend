@@ -2,13 +2,16 @@ package com.example.RegisterLogin.EmployeeController;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.RegisterLogin.EmployeeDTO.EmployeeDTO;
+import com.example.RegisterLogin.EmployeeDTO.LoginDTO;
 import com.example.RegisterLogin.Service.EmployeeService;
+import com.example.RegisterLogin.response.LoginResponse;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.*;
 @RestController
 @CrossOrigin
@@ -23,9 +26,9 @@ public class EmployeeController {
 		String id = employeeService.addEmployee(employeeDTO);
 		return id;
 	}
-//	public String add(@RequestBody Employee employee) {
-//		studentService.saveStudent(employee);
-//		return "New Student is added";
-//	}
-	
+	@PostMapping(path="/login")
+	public ResponseEntity<?>loginEmployee(@RequestBody LoginDTO loginDTO){
+		LoginResponse loginResponse = employeeService.loginEmployee(loginDTO);
+		return ResponseEntity.ok(loginResponse);
+	}
 }
