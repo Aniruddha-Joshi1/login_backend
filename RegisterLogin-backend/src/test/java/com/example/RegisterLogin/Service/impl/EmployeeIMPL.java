@@ -43,14 +43,14 @@ public class EmployeeIMPL implements EmployeeService{
 			if(isPasswordRight) {
 				Optional<Employee>employee=employeeRepo.findOneByEmailAndPassword(loginDTO.getEmail(),loginDTO.getPassword());
 				if(employee.isPresent()) {
-					return new LoginResponse (msg="Login success",status=true)
+					return new LoginResponse (msg="Login success",status=true);
 				}
 				else {
 					return new LoginResponse(msg="Login failed",status=false);
 				}
 			}
 			else {
-				return new LoginResponse(msg="password doesn't match",status=false)
+				return new LoginResponse(msg="password doesn't match",status=false);
 			}
 		}
 		else {
